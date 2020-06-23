@@ -7,7 +7,7 @@ from vulcan._utils import VulcanAPIException
 
 connection = False
 
-#tworzy pliki jesli nie istnieją-----------------------------------------------------------------------
+#tworzy pliki jesli nie istnieją----------------------------------------------------------------------
 create_files()
 
 if os.path.isfile("cert.json"): 
