@@ -15,3 +15,8 @@
  foo2 - there you can find out how GradesKeeper uses matplotlib
  
  foo3 - there you can find out how GradesKeeper communicate with Vulcan
+ 
+ 
+ # Exe downloads
+ 
+ https://drive.google.com/drive/folders/1VAuLTiNQ8liT5qsN0cyo01hCvwChrCTw?usp=sharing
