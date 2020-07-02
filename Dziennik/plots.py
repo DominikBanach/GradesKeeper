@@ -1,5 +1,5 @@
 #biblioteki
-from foo import subjects
+from files import subjects
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib import style

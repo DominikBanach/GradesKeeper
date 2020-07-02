@@ -7,6 +7,7 @@ from os import path
 from vulcan._utils import VulcanAPIException
 
 def menu():
+#this function prints menu and returns choosen option | no arguments, 1 return
     print("--------------------            DZIENNIK OCEN                -------------------")
     print("--------------------  1 -> Zobacz oceny w formie tekstu      -------------------")
     print("--------------------  2 -> Zobacz wykresy ocen               -------------------")
@@ -18,11 +19,16 @@ def menu():
 
 
 connection = False
-if os.path.isfile("cert.json"): connection = True
 
-create_files()
+if os.path.isfile("cert.json"): 
+#this statement is active when user have connected his Vulcan account yet
+
+    connection = True
+    fill_subjects_list()
+    create_files()
 
 if connection == False:
+#this statement is active when user haven't connected his Vulcan account yet
 
     print("Witaj w aplikacji GradesKeeper!")
     print("Połącz swoje konto w dzienniku Vulcan z aplikacją. W tym celu kieruj się poniższą instrukcją:")
@@ -30,15 +36,18 @@ if connection == False:
     print("2) Jeśli jest już tam dodane 'Vulcan API' to usuń urządzenie o tej nazwie.")
     print("3) Przepisz dokładnie trzy ważne ciągi znaków: TOKEN, SYMBOL i PIN.")
 
-    token   =  input("wpisz token:")
-    symbol  =  input("wpisz symbol:")
-    pin     =  input("wpisz PIN:")
+    token   =  input("Wpisz token:")
+    symbol  =  input("Wpisz symbol:")
+    pin     =  input("Wpisz PIN:")
 
     try: 
         new_acc(token, symbol, pin)
         connection = True
+        fill_subjects_list()
+        create_files()
         reset()
         update_grades()
+        print("Udało się połączyć z dziennikiem! (oceny również zostały pobrane)")
 
     except VulcanAPIException:
         print("Błędne dane lub problem z internetem!")
@@ -46,10 +55,12 @@ if connection == False:
     input("Enter by kontynuować...")
 
 
-
 while True:
+#main loop - every time it is taking number of choosen option using main(), "w" is var used to store this number
 
     system("cls")
+    if connection == False: break
+
     w = menu()
 
     if w == "1":
@@ -117,16 +128,17 @@ while True:
         try: 
             new_acc(token, symbol, pin)
             connection = True
+            fill_subjects_list()
+            create_files()
             reset()
             update_grades()
+            print("Udało się połączyć z dziennikiem! (oceny również zostały pobrane)")
 
         except VulcanAPIException:
             print("Błędne dane lub problem z internetem!")
 
         input("Enter by kontynuować...")
 
-    if w == "6":
-        break
+    if w == "6": break
 
-    if not w in ["1", "2", "3", "4", "5", "6"]:
-        input("Brak podanej opcji! Enter by kontynuować...")
+    if not w in ["1", "2", "3", "4", "5", "6"]: input("Brak podanej opcji! Enter by kontynuować...")

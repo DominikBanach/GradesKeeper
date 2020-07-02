@@ -2,15 +2,11 @@
 import os.path
 from os import system
 
-#------------------------------------------------------------------------------------------------------------------------
-#przedmioty
-subjects = ["matematyka","fizyka","geografia", "chemia", "biologia", "j.polski", "j.angielski",
-              "j.niemiecki", "informatyka", "wos", "historia", "edb", "wf", "plastyka", "religia"]
+subjects = []
 
 #dostępne oceny
 acceptable_grades = ("1", "2", "3", "4", "5", "6", "1-", "1+", "2-", "0pkt", "1pkt", "2pkt", "3pkt",
                      "2+", "3-", "3+", "4-", "4+", "5-", "5+", "6-", "6+", "-", "+", "np")
-
 
 
 def reset():
