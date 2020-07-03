@@ -13,7 +13,7 @@ def new_acc(token, symbol, pin):
 
 
 def fill_subjects_list():
-#this function uses grades list to fill "subjects" list with user's subjects name
+#this function uses grades list to fill "subjects" list with user's subjects name | no arguments, no returns
 
     with open("cert.json") as f:
         certificate = json.load(f)
@@ -28,6 +28,7 @@ def fill_subjects_list():
 def update_grades():
 #this function downloads grades from connected account | no arguments, no returns
 
+    #prepare connection with Vulcan account
     with open("cert.json") as f:
         certificate = json.load(f)
 

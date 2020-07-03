@@ -2,12 +2,8 @@
 import os.path
 from os import system
 
+#GradesKeeper store user's subjects names in this list
 subjects = []
-
-#dostępne oceny
-acceptable_grades = ("1", "2", "3", "4", "5", "6", "1-", "1+", "2-", "0pkt", "1pkt", "2pkt", "3pkt",
-                     "2+", "3-", "3+", "4-", "4+", "5-", "5+", "6-", "6+", "-", "+", "np")
-
 
 def reset():
 #this function makes all grades files empty | no returns, no arguments
@@ -21,7 +17,7 @@ def grades_list():
 #this function prints grades lists for each subject | no returns, no arguments
 
     print("Oto lista ocen:")
-    for i, subject in enumerate(subjects):
+    for i in range(len(subjects)):
         path = "oceny/" + subjects[i] + ".txt"
         file = open(path, "r")
         grades = file.readlines()
