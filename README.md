@@ -8,13 +8,13 @@
 
 # Files description
  
- dziennik - main file
+ main.py - main file
  
- foo - there you can find out how GradesKeeper save grades
+ files.py - there you can find out how GradesKeeper save grades
  
- foo2 - there you can find out how GradesKeeper uses matplotlib
+ plots.py - there you can find out how GradesKeeper uses matplotlib
  
- foo3 - there you can find out how GradesKeeper communicate with Vulcan
+ api.py - there you can find out how GradesKeeper communicate with Vulcan
  
  
  # Exe downloads
