@@ -1,0 +1,17 @@
+About the app:
+GradesKeeper is app made by Dominik Banach and it works with Vulcan. 
+Connecting with Vulcan is very easy, GradesKeeper will show you how to do it step-by-step.
+After creating an account, you can see your school timetable and your grades.
+Moreover, GradesKeeper can show you recived messages or future exams.
+It will show you some statistics about your grades too.
+
+About security:
+Data taken from your account is used by app only on your computer.
+Data will be never used by me or anyone else. 
+The fact that you have connected app with your Vulcan account doesn't give me permission to
+send messages by this account or changing anything. It only allows my app to get data from it.
+Obviously, only for usage by the app.
+
+Vulcan account and internet connection are necessary for using GradesKeeper.
+For more informations visit my GitHub profile using this link:
+https://github.com/DominikBanach/GradesKeeper

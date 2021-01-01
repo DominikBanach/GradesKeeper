@@ -1,0 +1,507 @@
+<PopupContent>:
+
+    information: information
+
+    Label:
+        id: information
+        text: "ERROR!!!"
+        size_hint: 0.6, 0.2
+        pos_hint: {"x": 0.2, "y": 0.5}
+
+<LoginWindow>:
+
+    name: "LoginWindow"
+
+    password_warn_label: password_warn_label
+    password_input: password_input
+    log_in_button: log_in_button
+    new_acc_btn: new_acc_btn
+
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'img/base.jpg'
+
+    FloatLayout:
+        size: self.size
+
+        Label:
+            size_hint: 0.2, 0.075
+            pos_hint: {'x' : 0.13, 'y' : 0.85}
+            font_size: 15
+            text:"Welcome to GradesKeeper! Log in or create new account."
+
+        Label:
+            id: password_warn_label
+            size_hint: 0.2, 0.075
+            pos_hint: {'x' : 0.6, 'y' : 0.725}
+            font_size: 12
+            color: 1,0,0,1
+            text:""
+
+        Label:
+            size_hint: 0.2, 0.075
+            pos_hint: {'x' : 0.725, 'y' : 0.8}
+            font_size: 35
+            text:"Password:"
+
+        TextInput:
+            id: password_input
+            size_hint: 0.15, 0.075
+            pos_hint: {'x' : 0.750, 'y' : 0.725}
+            input_filter: 'int'
+            font_size: 35
+            password: True
+            multiline: False
+            on_text_validate:
+                root.manager.transition.direction = "up"
+                root.log_in_btn_pressed() 
+
+        Button:
+            id: log_in_button
+            text: 'Log in'
+            size_hint: 0.15, 0.075
+            pos_hint: {'x' : 0.750, 'y' : 0.645}
+            font_size: 30 
+            on_release:
+                root.manager.transition.direction = "up"
+                root.log_in_btn_pressed() 
+
+        Button:
+            id: new_acc_btn
+            text: 'New acc'
+            size_hint: 0.15, 0.075
+            pos_hint: {'x' : 0.750, 'y' : 0.565}
+            font_size: 30     
+            on_release: 
+                password_warn_label.text = ""
+                app.root.current = "NewAccWindow"
+                root.manager.transition.direction = "left"         
+            
+        Button:
+            size_hint: 0.1, 0.15
+            pos_hint: {'x' : 0.02, 'y' : 0.02}
+            background_normal: 'img/info.png' 
+            background_down: 'img/info.png'
+            on_release: 
+                app.root.current = "InfoWindow"
+                root.manager.transition.direction = "right"
+
+<InfoWindow>:
+    name: "InfoWindow"
+    info_textbox: info_textbox
+
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'img/base.jpg'
+
+    FloatLayout:
+        size: self.size
+
+        TextInput:
+            id: info_textbox 
+            allow_copy: False
+            readonly: True
+            size_hint: 0.6, 0.65
+            pos_hint: {'x': 0.2, 'y': 0.22}
+                    
+
+        Button:
+            text: "Go back"
+            size_hint: 0.15, 0.06
+            pos_hint: {'x': 0.65, 'y': 0.15}
+            on_release: 
+                app.root.current = "LoginWindow"
+                root.manager.transition.direction = "left"
+
+<NewAccWindow>:
+    name: "NewAccWindow"
+
+    token_input:    token_input
+    symbol_input:   symbol_input
+    pin_input:      pin_input
+    password_input: password_input
+
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'img/base.jpg'
+
+        Rectangle:
+            pos: self.size[0] * 0.02, self.size[1] * 0.1
+            size: 523, 530
+            source: 'img/instruction.jpg'
+
+    FloatLayout:
+        size: self.size
+
+        Label:
+            text: "Enter TOKEN:"
+            font_size: 18
+            size_hint: 0.25, 0.05
+            pos_hint: {'x': 0.65, 'y': 0.75}
+            
+        TextInput:
+            id: token_input
+            size_hint: 0.1, 0.05
+            pos_hint: {'x': 0.725, 'y': 0.7}
+            multiline: False
+
+        Label:
+            text: "Enter Symbol:"
+            font_size: 18
+            size_hint: 0.25, 0.05
+            pos_hint: {'x': 0.65, 'y': 0.6}
+
+        TextInput:
+            id: symbol_input
+            size_hint: 0.15, 0.05
+            pos_hint: {'x': 0.7, 'y': 0.55}
+            multiline: False
+
+        Label:
+            text: "Enter PIN:"
+            font_size: 18
+            size_hint: 0.25, 0.05
+            pos_hint: {'x': 0.65, 'y': 0.45}
+
+        TextInput:
+            id: pin_input
+            size_hint: 0.1, 0.05
+            pos_hint: {'x': 0.725, 'y': 0.40}
+            multiline: False
+
+        Label:
+            text: "Choose password (4-digit):"
+            font_size: 18
+            size_hint: 0.25, 0.05
+            pos_hint: {'x': 0.65, 'y': 0.3}
+
+        TextInput:
+            id: password_input
+            size_hint: 0.1, 0.05
+            pos_hint: {'x': 0.725, 'y': 0.25}
+            font_size: 18
+            password: True
+            multiline: False
+            input_filter: 'int'
+
+        Button:
+            text: "Create account"
+            size_hint: 0.15, 0.05
+            pos_hint: {'x': 0.7, 'y': 0.15}
+            on_release: 
+                root.create_btn_pressed()
+
+        Button:
+            text: "Go back"
+            size_hint: 0.15, 0.06
+            pos_hint: {'x': 0.02, 'y': 0.03}
+            on_release: 
+                app.root.current = "LoginWindow"
+                root.manager.transition.direction = "right"
+
+<GradesWindow>:
+    name: "GradesWindow"
+
+    show_splittedgraph_btn: show_splittedgraph_btn
+    show_summarygraph_btn: show_summarygraph_btn
+    show_averagegraph_btn: show_averagegraph_btn
+    subject_grades_graph: subject_grades_graph
+    subject_name_label: subject_name_label
+
+    canvas.before:
+
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'img/base.jpg'
+
+        Color:
+            rgba: (252/255, 230/255, 201/255, 0.6)
+
+        Rectangle:
+            pos: self.pos
+            size: self.size[0], self.size[1]*0.0755
+        
+    FloatLayout:
+        size: self.size
+
+        Label:
+            size_hint: 0.2, 0.075
+            pos_hint: {'x' : 0.13, 'y' : 0.85}
+            font_size: 15
+            text:"Using this screen you can check your marks."
+
+        Label:
+            size_hint: 0.8, 0.055
+            pos_hint: {'x' : 0.1, 'y' : 0.008}
+            font_size: 25
+            color: 70/255, 200/255, 60/255, 1
+            text: "Grades Screen"
+
+        Button:
+            size_hint: 0.05, 0.055
+            pos_hint: {'x' : 0.025, 'y' : 0.008}
+            text: "<-"
+            font_size: 25
+            on_release: 
+                app.root.current = "MessagesWindow"
+                root.manager.transition.direction = "right"
+
+        Button:
+            size_hint: 0.05, 0.055
+            pos_hint: {'x' : 0.925, 'y' : 0.008}
+            text: "->"
+            font_size: 25
+            on_release: 
+                app.root.current = "PlanWindow"
+                root.manager.transition.direction = "left"
+
+        Label:
+            id: subject_name_label
+            size_hint: 0.2, 0.05
+            pos_hint: {'x' : 0.4, 'y' : 0.85}
+            font_size: 22
+            bold: True
+            text:""
+
+        Image:
+            id: subject_grades_graph
+            source: ""
+
+        Button:
+            id: show_splittedgraph_btn
+            text: "Show grades graph for all subjects"
+            size_hint: 0.3, 0.05
+            pos_hint: {'x': 0.025, 'y': 0.08}
+            on_release: 
+                root.show_splittedgraph_btn_pressed()
+
+        Button:
+            id: show_averagegraph_btn
+            text: "Show your average grade history graph"
+            size_hint: 0.3, 0.05
+            pos_hint: {'x': 0.35, 'y': 0.08}
+            on_release: 
+                root.show_averagegraph_btn_pressed()
+
+        Button:
+            id: show_summarygraph_btn
+            text: "Show summary graph for your grades"
+            size_hint: 0.3, 0.05
+            pos_hint: {'x': 0.675, 'y': 0.08}
+            on_release: 
+                root.show_summarygraph_btn_pressed()
+
+        Button:
+            text: "<"
+            size_hint: 0.025, 0.7
+            pos_hint: {'x': 0.025, 'y': 0.15}
+            on_release: 
+                root.left_swap()
+
+        Button:
+            text: ">"
+            size_hint: 0.025, 0.7
+            pos_hint: {'x': 0.95, 'y': 0.15}
+            on_release: 
+                root.right_swap()
+
+<MessagesWindow>:
+    name: "MessagesWindow"
+
+    msg_textbox: msg_textbox
+
+    canvas.before:
+
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'img/base.jpg'
+
+        Color:
+            rgba: (252/255, 230/255, 201/255, 0.6)
+
+        Rectangle:
+            pos: self.pos
+            size: self.size[0], self.size[1]*0.0755
+
+    FloatLayout:
+        size: self.size
+
+        TextInput:
+            id: msg_textbox 
+            allow_copy: True
+            readonly: True
+            size_hint: 0.6, 0.65
+            pos_hint: {'x': 0.2, 'y': 0.12}
+
+        Button:
+            text: "<"
+            size_hint: 0.025, 0.65
+            pos_hint: {'x': 0.175, 'y': 0.12}
+            on_release: root.left_swap()
+
+        Button:
+            text: ">"
+            size_hint: 0.025, 0.65
+            pos_hint: {'x': 0.8, 'y': 0.12}
+            on_release: root.right_swap()
+
+        Label:
+            size_hint: 0.2, 0.075
+            pos_hint: {'x' : 0.13, 'y' : 0.85}
+            font_size: 15
+            text:"Using this screen you can check your Vulcan mailbox."
+
+        Label:
+            size_hint: 0.8, 0.055
+            pos_hint: {'x' : 0.1, 'y' : 0.008}
+            font_size: 25
+            color: 70/255, 200/255, 60/255, 1
+            text: "Messages Screen"
+
+        Button:
+            size_hint: 0.05, 0.055
+            pos_hint: {'x' : 0.925, 'y' : 0.008}
+            text: "->"
+            font_size: 25
+            on_release: 
+                app.root.current = "GradesWindow"
+                root.manager.transition.direction = "left" 
+
+<PlanWindow>:
+    name: "PlanWindow"
+
+    plan_textbox: plan_textbox 
+    day_name_label: day_name_label   
+
+    canvas.before:
+
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'img/base.jpg'
+
+        Color:
+            rgba: (252/255, 230/255, 201/255, 0.6)
+
+        Rectangle:
+            pos: self.pos
+            size: self.size[0], self.size[1]*0.0755
+
+    FloatLayout:
+        size: self.size
+
+        TextInput:
+            id: plan_textbox 
+            allow_copy: True
+            readonly: True
+            size_hint: 0.6, 0.65
+            pos_hint: {'x': 0.2, 'y': 0.12}
+
+        Label:
+            size_hint: 0.2, 0.075
+            pos_hint: {'x' : 0.13, 'y' : 0.85}
+            font_size: 15
+            text:"Using this screen you can check your timetable."
+
+        Label:
+            id: day_name_label
+            size_hint: 0.2, 0.05
+            pos_hint: {'x' : 0.4, 'y' : 0.78}
+            font_size: 22
+            bold: True
+            text:""
+
+        Label:
+            size_hint: 0.8, 0.055
+            pos_hint: {'x' : 0.1, 'y' : 0.008}
+            font_size: 25
+            color: 70/255, 200/255, 60/255, 1
+            text: "Plan Screen"
+
+        Button:
+            text: "<"
+            size_hint: 0.025, 0.65
+            pos_hint: {'x': 0.175, 'y': 0.12}
+            on_release: root.left_swap()
+
+        Button:
+            text: ">"
+            size_hint: 0.025, 0.65
+            pos_hint: {'x': 0.8, 'y': 0.12}
+            on_release: root.right_swap()
+
+        Button:
+            size_hint: 0.05, 0.055
+            pos_hint: {'x' : 0.025, 'y' : 0.008}
+            text: "<-"
+            font_size: 25
+            on_release: 
+                app.root.current = "GradesWindow"
+                root.manager.transition.direction = "right"
+
+        Button:
+            size_hint: 0.05, 0.055
+            pos_hint: {'x' : 0.925, 'y' : 0.008}
+            text: "->"
+            font_size: 25
+            on_release: 
+                app.root.current = "ExamsWindow"
+                root.manager.transition.direction = "left"
+
+<ExamsWindow>:
+    name: "ExamsWindow"
+    exams_textbox: exams_textbox
+
+    canvas.before:
+
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'img/base.jpg'
+
+        Color:
+            rgba: (252/255, 230/255, 201/255, 0.6)
+
+        Rectangle:
+            pos: self.pos
+            size: self.size[0], self.size[1]*0.0755
+        
+    FloatLayout:
+        size: self.size
+
+        TextInput:
+            id: exams_textbox 
+            allow_copy: False
+            readonly: True
+            size_hint: 0.6, 0.65
+            pos_hint: {'x': 0.2, 'y': 0.22}
+
+        Label:
+            size_hint: 0.2, 0.075
+            pos_hint: {'x' : 0.13, 'y' : 0.85}
+            font_size: 15
+            text:"Using this screen you can check your future exams."
+
+        Label:
+            size_hint: 0.8, 0.055
+            pos_hint: {'x' : 0.1, 'y' : 0.008}
+            font_size: 25
+            color: 70/255, 200/255, 60/255, 1
+            text: "Exams Screen"
+
+        Button:
+            size_hint: 0.05, 0.055
+            pos_hint: {'x' : 0.025, 'y' : 0.008}
+            text: "<-"
+            font_size: 25
+            on_release: 
+                app.root.current = "PlanWindow"
+                root.manager.transition.direction = "right"
